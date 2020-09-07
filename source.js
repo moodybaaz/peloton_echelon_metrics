@@ -1,4 +1,4 @@
-javascript: (function() {
+
     var rideID = (rideID = window.location.pathname.split("/"))[rideID.length - 1];
     fetch("https://api.onepeloton.com/api/ride/" + rideID + "/details?stream_source=multichannel", {
         headers: {
@@ -49,4 +49,4 @@ javascript: (function() {
             characterData: !0
         })
     })
-})()
+
