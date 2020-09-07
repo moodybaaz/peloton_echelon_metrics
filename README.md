@@ -10,13 +10,10 @@ The Peloton web application does not display target metrics, like cadance and re
 - Live and recently added classes do not have metrics. It can take a day or more for Peloton to add metrics to a recording.
 - Metrics begin after the 1 minute warm-up.
 
-# How to use
-1. Start a cycling class on the Peloton website.
-2. Open the PelotonSchwinn bookmark.
-3. Metrics are magically displayed! (after the one minute start/warm-up)
-
 # How to install
-paste the source code into https://mrcoles.com/bookmarklet/, drag the generated Blue Button link to bookmark
-
-
+Install Tamper Monkey first: http://www.tampermonkey.net/
+After installing, click on https://github.com/minhur/peloton_echelon_metrics/raw/master/peloton_echelon.user.js
+Install page should show up, click Install (if it doesn't show up, tampermonkey is not installed
+Visit a page with metrics, skip the warm up and see if Echelon data shows up
+https://members.onepeloton.com/classes/player/10420f9a19ed4332b446a2c37e7c204d
 
