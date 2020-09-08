@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Peleton to Echelon
-// @version      1.1
+// @version      2.0
 // @author       minhur
 // @match        https://members.onepeloton.com/*
 // @grant        none
@@ -24,10 +24,19 @@
         f()
     })
 
-    function loadMetrics() {
-        console.log('class started, waiting for video to load...');
+    function start() {
+        console.log('checking if class has started');
 
         waitFor('video').then(([video])=>{
+            //comment this line out if you don't want captions auto turned on;
+            waitFor("div[data-test-id='video-timer']").then(()=>{
+                console.log('auto turning on captions');
+                setTimeout( () =>{
+                    jwplayer().setCurrentCaptions(1)
+                }, 1000);
+            })
+
+            // load metrics
             console.log('video loaded, loading metrics if exists');
             var rideID = (rideID = window.location.pathname.split("/"))[rideID.length - 1];
             fetch("https://api.onepeloton.com/api/ride/" + rideID + "/details?stream_source=multichannel", {
@@ -58,6 +67,9 @@
                 if (!i.instructor_cues.length) return e.innerHTML = "Class does not have target metrics.", void setTimeout(function() {
                     e.innerHTML = ""
                 }, 5e3);
+                if (i.instructor_cues.length) {
+                    c.innerHTML = 'Warmup Session';
+                }
                 for (var t = [], r = i.instructor_cues[0], n = 1; n < i.instructor_cues.length; n++) {
                     var s = i.instructor_cues[n];
                     r.resistance_range.upper == s.resistance_range.upper && r.resistance_range.lower == s.resistance_range.lower && r.cadence_range.upper == s.cadence_range.upper && r.cadence_range.lower == s.cadence_range.lower ? r.offsets.end = s.offsets.end : (t.push(r), r = s)
@@ -82,7 +94,7 @@
         })
     };
 
-    loadMetrics();
+    start();
     // detect url changes
     (function(history){
         var pushState = history.pushState;
@@ -95,7 +107,7 @@
 
         window.onpopstate = history.onpushstate = function(e) {
             if (e.path.indexOf('player') !== -1) {
-                loadMetrics();
+                start();
             }
         }
 
