@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Peleton to Echelon
-// @version      2.1
+// @version      3.0
 // @author       minhur
 // @match        https://members.onepeloton.com/*
 // @grant        none
@@ -10,19 +10,7 @@
     'use strict';
 
     console.log('script loaded');
-
-    const waitFor = (...selectors) => new Promise(resolve => {
-        const delay = 500
-        const f = () => {
-            const elements = selectors.map(selector => document.querySelector(selector))
-            if (elements.every(element => element != null)) {
-                resolve(elements)
-            } else {
-                setTimeout(f, delay)
-            }
-        }
-        f()
-    })
+    var interval;
 
     function start() {
         console.log('checking if class has started');
@@ -30,10 +18,13 @@
         waitFor('video').then(([video])=>{
 
             //comment this line out if you don't want captions auto turned on;
-            setInterval( () =>{
-                console.log('caption on');
-                jwplayer().setCurrentCaptions(1)
-            }, 3000);
+            interval = setInterval( () =>{
+                console.log('caption');
+                if (jwplayer != undefined && !jwplayer().getCurrentCaptions()) {
+                    console.log('caption on');
+                    jwplayer().setCurrentCaptions(1)
+                }
+            }, 5000);
 
             // load metrics
             console.log('video loaded, loading metrics if exists');
@@ -76,6 +67,7 @@
                 t.push(s), i.instructor_cues = t, console.dir(i.instructor_cues);
                 var u = document.querySelector("div[data-test-id='video-timer']");
                 new MutationObserver(function(e) {
+                    console.log('dom change', observer);
                     var t = document.querySelector("p[data-test-id='time-to-complete']");
                     if (!t) return;
                     if (2 != (t = t.innerHTML.split(":")).length) return;
@@ -93,7 +85,10 @@
         })
     };
 
-    start();
+    // start if video
+    if (window.location.href.indexOf('player') !== -1) {
+        start();
+    }
     // detect url changes
     (function(history){
         var pushState = history.pushState;
@@ -107,8 +102,24 @@
         window.onpopstate = history.onpushstate = function(e) {
             if (e.path.indexOf('player') !== -1) {
                 start();
+            } else {
+                console.log('stop');
+                clearInterval(interval);
             }
         }
 
     })(window.history);
-})();
+
+    const waitFor = (...selectors) => new Promise(resolve => {
+        const delay = 500
+        const f = () => {
+            const elements = selectors.map(selector => document.querySelector(selector))
+            if (elements.every(element => element != null)) {
+                resolve(elements)
+            } else {
+                setTimeout(f, delay)
+            }
+        }
+        f()
+    })
+    })();
