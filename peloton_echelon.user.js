@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Peleton to Echelon
-// @version      3.2
+// @version      4.0
 // @author       minhur
 // @match        https://members.onepeloton.com/*
 // @grant        none
