@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Peleton to Echelon
-// @version      2.0
+// @version      2.1
 // @author       minhur
 // @match        https://members.onepeloton.com/*
 // @grant        none
@@ -28,13 +28,12 @@
         console.log('checking if class has started');
 
         waitFor('video').then(([video])=>{
+
             //comment this line out if you don't want captions auto turned on;
-            waitFor("div[data-test-id='video-timer']").then(()=>{
-                console.log('auto turning on captions');
-                setTimeout( () =>{
-                    jwplayer().setCurrentCaptions(1)
-                }, 1000);
-            })
+            setInterval( () =>{
+                console.log('caption on');
+                jwplayer().setCurrentCaptions(1)
+            }, 3000);
 
             // load metrics
             console.log('video loaded, loading metrics if exists');
