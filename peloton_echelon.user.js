@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Peleton to Echelon
-// @version      3.0
+// @version      3.1
 // @author       minhur
 // @match        https://members.onepeloton.com/*
 // @grant        none
@@ -11,6 +11,19 @@
 
     console.log('script loaded');
     var interval;
+
+    const waitFor = (...selectors) => new Promise(resolve => {
+        const delay = 500
+        const f = () => {
+            const elements = selectors.map(selector => document.querySelector(selector))
+            if (elements.every(element => element != null)) {
+                resolve(elements)
+            } else {
+                setTimeout(f, delay)
+            }
+        }
+        f()
+    })
 
     function start() {
         console.log('checking if class has started');
@@ -67,7 +80,6 @@
                 t.push(s), i.instructor_cues = t, console.dir(i.instructor_cues);
                 var u = document.querySelector("div[data-test-id='video-timer']");
                 new MutationObserver(function(e) {
-                    console.log('dom change', observer);
                     var t = document.querySelector("p[data-test-id='time-to-complete']");
                     if (!t) return;
                     if (2 != (t = t.innerHTML.split(":")).length) return;
@@ -110,16 +122,5 @@
 
     })(window.history);
 
-    const waitFor = (...selectors) => new Promise(resolve => {
-        const delay = 500
-        const f = () => {
-            const elements = selectors.map(selector => document.querySelector(selector))
-            if (elements.every(element => element != null)) {
-                resolve(elements)
-            } else {
-                setTimeout(f, delay)
-            }
-        }
-        f()
-    })
-    })();
+
+})();
