@@ -1,8 +1,10 @@
 // ==UserScript==
 // @name         Peleton to Echelon
-// @version      4.0
+// @version      3.1
 // @author       minhur
 // @match        https://members.onepeloton.com/*
+// @updateURL    https://github.com/minhur/peloton_echelon_metrics/raw/master/peloton_echelon.user.js
+// @downloadURL  https://github.com/minhur/peloton_echelon_metrics/raw/master/peloton_echelon.user.js
 // @grant        none
 // ==/UserScript==
 
