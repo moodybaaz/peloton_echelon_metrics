@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Peleton to Echelon
-// @version      3.1
+// @version      4.0
 // @author       minhur
 // @match        https://members.onepeloton.com/*
 // @updateURL    https://github.com/minhur/peloton_echelon_metrics/raw/master/peloton_echelon.user.js
@@ -12,7 +12,8 @@
     'use strict';
 
     console.log('script loaded');
-    var interval;
+    var caption;
+    var quality;
 
     const waitFor = (...selectors) => new Promise(resolve => {
         const delay = 500
@@ -32,14 +33,32 @@
 
         waitFor('video').then(([video])=>{
 
-            //comment this line out if you don't want captions auto turned on;
-            interval = setInterval( () =>{
-                console.log('caption');
-                if (jwplayer != undefined && !jwplayer().getCurrentCaptions()) {
-                    console.log('caption on');
-                    jwplayer().setCurrentCaptions(1)
+            // auto turn on captions
+            caption = setInterval( () =>{
+                console.log('checking caption');
+                if (jwplayer != undefined) {
+                    if (!jwplayer().getCurrentCaptions()) {
+                        console.log('turning on caption');
+                        jwplayer().setCurrentCaptions(1)
+                    } else {
+                        console.log('caption is on, clearing interval');
+                        clearInterval(caption);
+                    }
                 }
-            }, 5000);
+            }, 2000);
+
+            quality = setInterval( () =>{
+                console.log('checking quality');
+                if (jwplayer != undefined) {
+                    if (jwplayer().getCurrentQuality() === 0) {
+                        console.log('lowering quality');
+                        jwplayer().setCurrentQuality(5);
+                    } else {
+                        console.log('quality is on, clearing interval');
+                        clearInterval(quality);
+                    }
+                }
+            }, 2000);
 
             // load metrics
             console.log('video loaded, loading metrics if exists');
@@ -118,7 +137,7 @@
                 start();
             } else {
                 console.log('stop');
-                clearInterval(interval);
+                // clearInterval(interval);
             }
         }
 
