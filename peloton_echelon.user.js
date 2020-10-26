@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Peleton to Echelon
-// @version      4.1
-// @author       minhur
+// @version      4.1.1
+// @author       moodybaaz
 // @match        https://members.onepeloton.com/*
-// @updateURL    https://github.com/minhur/peloton_echelon_metrics/raw/master/peloton_echelon.user.js
-// @downloadURL  https://github.com/minhur/peloton_echelon_metrics/raw/master/peloton_echelon.user.js
+// @updateURL    https://github.com/moodybaaz/peloton_echelon_metrics/raw/master/peloton_echelon.user.js
+// @downloadURL  https://github.com/moodybaaz/peloton_echelon_metrics/raw/master/peloton_echelon.user.js
 // @grant        none
 // ==/UserScript==
 
@@ -47,6 +47,7 @@
                 }
             }, 2000);
 
+        /*
             quality = setInterval( () =>{
                 console.log('checking quality');
                 if (jwplayer != undefined) {
@@ -59,6 +60,7 @@
                     }
                 }
             }, 2000);
+        */
 
             // load metrics
             console.log('video loaded, loading metrics if exists');
