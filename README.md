@@ -12,7 +12,7 @@ The Peloton web application does not display target metrics, like cadance and re
 
 # How to install
 - Install Tamper Monkey first: http://www.tampermonkey.net/  
-- After installing, click on https://github.com/minhur/peloton_echelon_metrics/raw/master/peloton_echelon.user.js  
+- After installing, click on https://github.com/moodybaaz/peloton_echelon_metrics/raw/master/peloton_echelon.user.js  
 - Install page should show up, click Install (if it doesn't show up, tampermonkey is not installed  
 - Visit a page with metrics, skip the warm up and see if Echelon data shows up  
 - https://members.onepeloton.com/classes/player/10420f9a19ed4332b446a2c37e7c204d  
