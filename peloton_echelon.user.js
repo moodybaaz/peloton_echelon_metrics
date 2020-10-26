@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Peleton to Echelon
-// @version      4.1.1
+// @version      4.2
 // @author       moodybaaz
 // @match        https://members.onepeloton.com/*
 // @updateURL    https://github.com/moodybaaz/peloton_echelon_metrics/raw/master/peloton_echelon.user.js
