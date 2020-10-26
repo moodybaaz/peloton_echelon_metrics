@@ -1,4 +1,7 @@
-Fork from https://github.com/ZV3zrmCT/peloton_schwinn_metrics to display Echelon resistance
+Fork from:
+https://github.com/minhur/peloton_echelon_metrics (which in turn is a fork from https://github.com/ZV3zrmCT/peloton_schwinn_metrics to display Echelon resistance). 
+The only change between this version and the original is the resistance translation between Peloton and Echelon. This one is based on:
+![Alt](https://raw.githubusercontent.com/moodybaaz/peloton_echelon_metrics/master/Translation.jpg "Translation table")
 
 # About
 The Peloton web application does not display target metrics, like cadance and resistance. This bookmarklet uses the Peloton web application and API to display the target metrics. Works in cycling classes only.
@@ -6,9 +9,7 @@ The Peloton web application does not display target metrics, like cadance and re
 ![Alt](https://raw.githubusercontent.com/moodybaaz/peloton_echelon_metrics/master/Example.PNG "Peloton class with target metrics")
 
 # Metrics
-- Two resistance ranges are displayed. The first is for the Echelon bike, the second is for Peloton (in paranthesis). The only change between this version and the original from which this was forked (https://github.com/minhur/peloton_echelon_metrics) is the resistance translation between Peloton and Echelon. This one is based on:
-![Alt](https://raw.githubusercontent.com/moodybaaz/peloton_echelon_metrics/master/Translation.jpg "Translation table")
-
+- Two resistance ranges are displayed. The first is for the Echelon bike, the second is for Peloton (in paranthesis). 
 - Live and recently added classes do not have metrics. It can take a day or more for Peloton to add metrics to a recording.
 - Metrics begin after the 1 minute warm-up.
 
