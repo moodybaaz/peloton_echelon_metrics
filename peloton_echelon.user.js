@@ -38,7 +38,7 @@
                 if (jwplayer != undefined) {
                     if (!jwplayer().getCurrentCaptions()) {
                         console.log('turning on caption');
-                        jwplayer().setCurrentCaptions(1)
+                        jwplayer().setCurrentCaptions(1);
                     } else {
                         console.log('caption is on, clearing interval');
                         clearInterval(caption);
@@ -92,13 +92,7 @@
                         ],
                     o = Number(i.ride.duration),
                     e = document.createElement("div");
-                    e.id = "cadresist",
-                    e.style = "color:white",
-                    e.innerHTML =  '<div id="cadresisttxt" style="width:100%;color:white;font-size:30px"></div>
-                                    <div style="margin-top:15px;width:100%; height:2px; background-color:#555555">
-                                        <div id="cadresistprogress" style="width:0%;transition:990ms linear;height:2px;background-color:white"></div>
-                                    </div>',
-                                    document.querySelector("div[data-test-id='videoSongContainer']").after(e);
+                    e.id = "cadresist", e.style = "color:white", e.innerHTML = '<div id="cadresisttxt" style="width:100%;color:white;font-size:30px"></div><div style="margin-top:15px;width:100%; height:2px; background-color:#555555"><div id="cadresistprogress" style="width:0%;transition:990ms linear;height:2px;background-color:white"></div></div>', document.querySelector("div[data-test-id='videoSongContainer']").after(e);
                 var c = document.getElementById("cadresisttxt"),
                     d = document.getElementById("cadresistprogress");
                 if (!i.instructor_cues.length) return e.innerHTML = "Class does not have target metrics.", void setTimeout(function() {
@@ -150,7 +144,6 @@
                 start();
             } else {
                 console.log('stop');
-                // clearInterval(interval);
             }
         }
 
