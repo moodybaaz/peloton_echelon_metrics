@@ -13,7 +13,6 @@
 
     console.log('script loaded');
     var caption;
-    var quality;
 
     const waitFor = (...selectors) => new Promise(resolve => {
         const delay = 500
@@ -46,21 +45,6 @@
                     }
                 }
             }, 2000);
-
-        /*
-            quality = setInterval( () =>{
-                console.log('checking quality');
-                if (jwplayer != undefined) {
-                    if (jwplayer().getCurrentQuality() === 0) {
-                        console.log('lowering quality');
-                        jwplayer().setCurrentQuality(5);
-                    } else {
-                        console.log('quality is on, clearing interval');
-                        clearInterval(quality);
-                    }
-                }
-            }, 2000);
-        */
 
             // load metrics
             console.log('video loaded, loading metrics if exists');
