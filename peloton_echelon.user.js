@@ -127,21 +127,7 @@
                     subtree: !0,
                     characterData: !0
                 })
-            });
-
-            // auto turn on captions
-            caption = setInterval( () =>{
-                console.log('checking caption');
-                if (jwplayer != undefined) {
-                    if (!jwplayer().getCurrentCaptions()) {
-                        console.log('turning on caption');
-                        jwplayer().setCurrentCaptions(1);
-                    } else {
-                        console.log('caption is on, clearing interval');
-                        clearInterval(caption);
-                    }
-                }
-            }, 2000);
+            })
         })
     };
 
